@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="d-flex justify-content-center align-items-center position-fixed h-100 w-100 bg-black" id="loadingScreen">
+        <div class="display-1 text-white">
+            Loading <span class="position-fixed"></span>
+        </div>
+    </div>
+
+    <script>
+        let loadingScreen = document.getElementById('loadingScreen');
+        let loadingText = '...';
+        let loadingIndex = 0;
+
+        loadingInterval = setInterval(function () {
+            if (loadingIndex == 3) {
+                loadingIndex = 0;
+                loadingScreen.firstElementChild.firstElementChild.innerText = '';
+            } else {
+                loadingScreen.firstElementChild.firstElementChild.innerText += loadingText[loadingIndex];
+                loadingIndex++;
+            }
+        }, 0.25 * 1000);
+
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                loadingScreen.classList.add('d-none');
+                clearInterval(loadingInterval);
+            }, 5 * 1000);
+        });
+
+    </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
